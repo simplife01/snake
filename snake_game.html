@@ -7,19 +7,31 @@
 
   <body>
     <div id="score">0</div>
-    <div style="text-align: center;"><button onclick="restart()">RESTART</button></div>
-    <canvas id="snakeboard" width="400" height="400"></canvas>
+    <div id="re"><button onclick="restart()">RESTART</button></div>
+    <div id="canv"><canvas id="snakeboard" width="400" height="400"></canvas></div>
     
     <style>
       #snakeboard {
         position: absolute;
-        top: 67%;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
       #score {
         text-align: center;
-        font-size: 140px;
+        font-size: 600%;
+        margin: 0;
+        padding: 0;
+        height: 20%;
+      }
+      #re {
+        margin: 0;
+        padding: 0 80% 0 20%;
+      }
+      #canv {
+        text-align: center;
+        margin: 0;
+        padding: 0;
       }
       button {
         color: black;
