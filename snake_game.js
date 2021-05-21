@@ -64,7 +64,7 @@ function main() {
     drawSnake();
     // Repeat
     main();
-  }, 100)
+  }, 50)
 }
 
 // draw a border around the canvas
