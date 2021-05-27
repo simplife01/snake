@@ -37,6 +37,9 @@ function restart() {
   score = 0;
   document.getElementById('score').innerHTML = score;
   clear_board();
+  changing_direction = false;
+  dx = 10;
+  dy = 0;
   snake = [
     {x: 200, y: 200},
     {x: 190, y: 200},
@@ -44,15 +47,16 @@ function restart() {
     {x: 170, y: 200},
     {x: 160, y: 200}
   ]
-  gen_food();
+
   main();
+  gen_food();
 }
 
 // main function called repeatedly to keep the game running
 function main() {
 
     if (has_game_ended()) {
-      window.alert("GAME OVER!!!");
+      // window.alert("GAME OVER!!!");
       return;
     }
     
