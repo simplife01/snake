@@ -7,7 +7,15 @@
 
   <body>
     <div id="score">0</div>
-    <div id="re"><button onclick="restart()">RESTART</button></div>
+    <div id="but">
+      <button onclick="start();">開始</button>
+      <br><br>
+      <button onclick="restart();">重新開始</button>
+      <br><br>
+      <button onclick="addv();">加速</button>
+      <br><br>
+      <button onclick="minusv();">減速</button>
+    </div>
     <div id="canv"><canvas id="snakeboard" width="400" height="400"></canvas></div>
     
     <style>
@@ -24,9 +32,9 @@
         padding: 0;
         height: 20%;
       }
-      #re {
-        margin: 0;
-        padding: 0 80% 0 20%;
+      #but {
+        margin: 10% 15%;
+        padding: 0;
       }
       #canv {
         text-align: center;
@@ -35,11 +43,24 @@
       }
       button {
         color: black;
-        font-size: 30px;
+        font-size: 25px;
         border: none;
+        width: 170px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color:violet;
+      }
+      button:hover {
+        color: black;
+        font-size: 25px;
+        border: none;
+        width: 170px;
         font-family: Arial, Helvetica, sans-serif;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        background-color:violet;
+        background-color:rgb(250, 117, 117);
+      }
+      .disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
       }
       body {
         background-image: url('image.jpg');
