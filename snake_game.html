@@ -7,6 +7,7 @@
 
   <body>
     <div id="score">0</div>
+    <div id="second">0</div>
     <div id="but">
       <button onclick="start();">開始</button>
       <br><br>
@@ -16,7 +17,7 @@
       <br><br>
       <button onclick="minusv();">減速</button>
     </div>
-    <div id="canv"><canvas id="snakeboard" width="400" height="400"></canvas></div>
+    <div id="canv"><canvas id="snakeboard" width="400" height="400" style="border:10px solid #920000;"></canvas></div>
     
     <style>
       #snakeboard {
@@ -24,6 +25,7 @@
         top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
+        /* border: brown; */
       }
       #score {
         text-align: center;

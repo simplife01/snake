@@ -21,13 +21,22 @@ let dx = 10;
 // Vertical velocity
 let dy = 0;
 let vel = 100;
+// let score_tmp = 0;
+
+var time_last;
+var timenow = 0;
+var countdown = setInterval(function(){
+  document.getElementById("second").innerHTML = timenow;
+  timenow += 1;
+}, 1000);
+
 
 // Get the canvas element
 const snakeboard = document.getElementById("snakeboard");
 // Return a two dimensional drawing context
 const snakeboard_ctx = snakeboard.getContext("2d");
-// Start game
 
+// Start game
 
 document.addEventListener("keydown", change_direction);
 
@@ -37,11 +46,15 @@ drawFood();
 drawSnake();
 
 function start() {
+  timenow = 0;
+  time_last = timenow;
   main();
 }
 
 
 function restart() {
+  timenow = 0;
+  time_last = timenow;
   score = 0;
   document.getElementById('score').innerHTML = score;
   clear_board();
@@ -109,8 +122,8 @@ function drawSnake() {
 function drawFood() {
   snakeboard_ctx.fillStyle = 'lightgreen';
   snakeboard_ctx.strokestyle = 'darkgreen';
-  snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
-  snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
+  snakeboard_ctx.fillRect(food_x, food_y, 20, 20);
+  snakeboard_ctx.strokeRect(food_x, food_y, 20, 20);
 }
 
 // Draw one snake part
@@ -139,17 +152,19 @@ function has_game_ended() {
 }
 
 function random_food(min, max) {
-  return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+  return Math.round((Math.random() * (max-min) + min) / 20) * 20;
 }
 
 function gen_food() {
   // Generate a random number the food x-coordinate
-  food_x = random_food(0, snakeboard.width - 10);
+  food_x = random_food(0, snakeboard.width - 20);
+  foo_x1 = food_x + 1
   // Generate a random number for the food y-coordinate
-  food_y = random_food(0, snakeboard.height - 10);
+  food_y = random_food(0, snakeboard.height - 20);
+  foo_y1 = food_y + 1
   // if the new food location is where the snake currently is, generate a new food location
   snake.forEach(function has_snake_eaten_food(part) {
-    const has_eaten = part.x == food_x && part.y == food_y;
+    const has_eaten = (part.x == food_x && part.y == food_y)
     if (has_eaten) gen_food();
   });
 }
@@ -192,10 +207,11 @@ function move_snake() {
   const head = {x: snake[0].x + dx, y: snake[0].y + dy};
   // Add the new head to the beginning of snake body
   snake.unshift(head);
-  const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
+  const has_eaten_food = (snake[0].x === food_x && snake[0].y === food_y) || (snake[0].x === food_x+10 && snake[0].y === food_y) || (snake[0].x === food_x && snake[0].y === food_y+10) || (snake[0].x === food_x+10 && snake[0].y === food_y+10);
   if (has_eaten_food) {
     // Increase score
-    score += 10;
+    score += Math.max(0, (12-timenow+time_last));
+    time_last = timenow;
     // Display score on screen
     document.getElementById('score').innerHTML = score;
     // Generate new food location
